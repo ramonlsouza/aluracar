@@ -8,10 +8,9 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item>Brasília</ion-item>
-    <ion-item>Opala</ion-item>
-    <ion-item>Monza</ion-item>
-    <ion-item>Saveiro</ion-item>
-    <ion-item>Passat</ion-item>
+    <ion-item *ngFor="let carro of carros">
+      <h2>{{carro.nome}}</h2>
+      <p>R$ {{carro.preco}}</p>
+    </ion-item>
   </ion-list>
 </ion-content>
