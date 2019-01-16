@@ -1,0 +1,5 @@
+novo projeto: 
+ionic start [nome_projeto] [template]
+ionic start meuProjeto blank
+
+ionic serve --lab
