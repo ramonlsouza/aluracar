@@ -3,12 +3,13 @@ import { NavController, LoadingController, AlertController } from 'ionic-angular
 import { Carro } from '../../models/carro';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CarrosServiceProvider } from '../../providers/carros-service/carros-service';
+import { NavLifecycles } from '../../utils/ionic/nav/nav-lifecycles';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements NavLifecycles{
 
   public carros: Carro[];
 
@@ -17,8 +18,10 @@ export class HomePage {
     private _loadingCtrl: LoadingController,
     private _alertCtrl: AlertController,
     private _carrosService: CarrosServiceProvider
-  ) {
-    let loading = this._loadingCtrl.create({
+  ){}
+  
+  ionViewDidLoad(){
+      let loading = this._loadingCtrl.create({
       content: 'Carregando carros...'
     });
 
