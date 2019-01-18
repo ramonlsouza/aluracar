@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Carro } from '../../models/carro';
 
 @Component({
   selector: 'page-home',
@@ -7,7 +8,7 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  public carros;
+  public carros: Carro[];
 
   constructor(public navCtrl: NavController) {
     this.carros = [
