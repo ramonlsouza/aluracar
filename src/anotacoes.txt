@@ -6,3 +6,6 @@ ionic serve --lab
 
 criar provider:
 ionic g provider carros.service
+
+criar pagina:
+ionic g page escolha
