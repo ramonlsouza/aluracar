@@ -68,7 +68,14 @@ export class CadastroPage {
     let mensagem = '';
 
     this._agendamentosService.agenda(agendamento)
-      .mergeMap(() => this.salva(agendamento))
+      .mergeMap((valor) => {
+        let observable = this.salva(agendamento);
+
+        if(valor instanceof Error){
+          throw valor;
+        }
+        return observable;
+      })
       .finally(
         () => {
           this._alerta.setSubTitle(mensagem);
@@ -76,12 +83,8 @@ export class CadastroPage {
         }    
       )
       .subscribe(
-      () => {
-        mensagem = 'Agendamento realizado!';
-      },
-      () => {
-        mensagem = 'Falha no agendamento!';
-      }
+      () => mensagem = 'Agendamento realizado!',
+      (err: Error) => mensagem = err.message,
     );
   }
 
