@@ -13,6 +13,8 @@ import { AgendamentosServiceProvider } from '../providers/agendamentos-service/a
 import {IonicStorageModule} from '@ionic/storage';
 
 import 'rxjs/add/operator/finally';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/fromPromise';
 
 @NgModule({
   declarations: [

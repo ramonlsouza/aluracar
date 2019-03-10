@@ -3,5 +3,7 @@ export interface Agendamento{
     enderecoCliente: string,
     emailCliente: string,
     modeloCarro: string,
-    precoTotal: number,    
+    precoTotal: number, 
+    confirmado: boolean,
+    enviado: boolean   
 }
