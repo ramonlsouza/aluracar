@@ -8,5 +8,34 @@
 
 
 <ion-content padding>
+  <h2>{{carro.nome}}</h2>
+  <p>R$ {{precoTotal}}</p>
 
+  <form>
+    <ion-item>
+      <ion-label stacked>Nome:</ion-label>
+      <ion-input name="nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Endereço:</ion-label>
+      <ion-input name="endereco"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>E-mail:</ion-label>
+      <ion-input name="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Data:</ion-label>
+      <ion-input name="data"></ion-input>
+    </ion-item>
+  </form>
+
+  <ion-fab top right edge>
+    <button ion-fab>
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
