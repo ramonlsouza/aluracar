@@ -26,8 +26,13 @@
         <ion-icon name="options"></ion-icon>
         ACESSÓRIOS
       </ion-item-divider>
-      <ion-item>Acessório 1</ion-item>
-      <ion-item>Acessório 2</ion-item>
+      <ion-item *ngFor="let acessorio of acessorios">
+        <ion-label>
+          <h2>{{acessorio.nome}}</h2>
+          <h4>{{acessorio.preco}}</h4>
+        </ion-label>
+        <ion-toggle color="secondary"></ion-toggle>
+      </ion-item>
   </ion-item-group>
 
   <ion-item-divider color="light">
