@@ -19,6 +19,7 @@ import 'rxjs/add/operator/catch';
 
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/of';
+import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import 'rxjs/add/observable/of';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CarrosServiceProvider,
     AgendamentosServiceProvider,
+    AgendamentoDaoProvider,
   ]
 })
 export class AppModule {}

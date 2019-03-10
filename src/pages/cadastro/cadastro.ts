@@ -4,8 +4,7 @@ import { Carro } from '../../models/carro';
 import { AgendamentosServiceProvider } from '../../providers/agendamentos-service/agendamentos-service';
 import { HomePage } from '../home/home';
 import { Agendamento } from '../../models/agendamento';
-import { Storage } from '@ionic/storage';
-import { Observable } from 'rxjs/Observable';
+import { AgendamentoDaoProvider } from '../../providers/agendamento-dao/agendamento-dao';
 
 @IonicPage()
 @Component({
@@ -27,7 +26,7 @@ export class CadastroPage {
     public navParams: NavParams, 
     private _agendamentosService: AgendamentosServiceProvider, 
     private _alertCtrl: AlertController,
-    private _storage: Storage) {
+    private _agendamentoDao: AgendamentoDaoProvider) {
     this.carro = this.navParams.get('carroSelecionado');
     this.precoTotal = this.navParams.get('precoTotal');
   }
@@ -49,6 +48,7 @@ export class CadastroPage {
       emailCliente: this.email,
       modeloCarro: this.carro.nome,
       precoTotal: this.precoTotal,
+      data: this.data,
       confirmado: false,
       enviado: false
     }
@@ -69,7 +69,7 @@ export class CadastroPage {
 
     this._agendamentosService.agenda(agendamento)
       .mergeMap((valor) => {
-        let observable = this.salva(agendamento);
+        let observable = this._agendamentoDao.salva(agendamento);
 
         if(valor instanceof Error){
           throw valor;
@@ -88,10 +88,4 @@ export class CadastroPage {
     );
   }
 
-  salva(agendamento){
-    let chave = this.email + this.data.substr(0,10);
-    let promise = this._storage.set(chave, agendamento);
-
-    return Observable.fromPromise(promise);
-  }
 }
