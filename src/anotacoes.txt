@@ -9,3 +9,12 @@ ionic g provider carros.service
 
 criar pagina:
 ionic g page escolha
+
+depois de criar pagina sempre precisa ir no module.ts da pagina e incluir o exports
+para poder navegar para a pagina utilizando o nome
+  imports: [
+    IonicPageModule.forChild(CadastroPage),
+  ],
+  exports: [
+    CadastroPage
+  ]

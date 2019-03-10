@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Carro } from '../../models/carro';
+import { CadastroPage } from '../cadastro/cadastro';
 
 @IonicPage()
 @Component({
@@ -28,6 +29,14 @@ export class EscolhaPage {
       this._precoTotal += acessorio.preco:
       this._precoTotal -= acessorio.preco;
   }
+
+  avancaCadastro(){
+    this.navCtrl.push(CadastroPage.name, {
+      carroSelecionado: this.carro,
+      precoTotal: this._precoTotal
+    })
+  }
+  
   //como atributo é privado, precisa de getter para acessar de fora
   get precoTotal(){
     return this._precoTotal;
