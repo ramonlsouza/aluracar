@@ -29,14 +29,14 @@
       <ion-item *ngFor="let acessorio of acessorios">
         <ion-label>
           <h2>{{acessorio.nome}}</h2>
-          <h4>{{acessorio.preco}}</h4>
+          <h4>R$ {{acessorio.preco}}</h4>
         </ion-label>
-        <ion-toggle color="secondary"></ion-toggle>
+        <ion-toggle #toggle color="secondary" (ionChange)="atualizaTotal(toggle.checked,acessorio)"></ion-toggle>
       </ion-item>
   </ion-item-group>
 
   <ion-item-divider color="light">
-    <span item-right>TOTAL: R$ 1000</span>
+    <span item-right>TOTAL: R$ {{ precoTotal }}</span>
   </ion-item-divider>
 
   <ion-fab top right edge>
