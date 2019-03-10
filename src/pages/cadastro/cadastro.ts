@@ -68,6 +68,7 @@ export class CadastroPage {
     let mensagem = '';
 
     this._agendamentosService.agenda(agendamento)
+      .mergeMap(() => this.salva(agendamento))
       .finally(
         () => {
           this._alerta.setSubTitle(mensagem);
