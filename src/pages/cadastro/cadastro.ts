@@ -67,7 +67,14 @@ export class CadastroPage {
 
     let mensagem = '';
 
-    this._agendamentosService.agenda(agendamento)
+    this._agendamentoDao.duplicado(agendamento)
+      .mergeMap(duplicado => {
+        if(duplicado){
+          throw new Error('Agendamento existente!');
+        }
+
+        return this._agendamentosService.agenda(agendamento);
+      })
       .mergeMap((valor) => {
         let observable = this._agendamentoDao.salva(agendamento);
 
