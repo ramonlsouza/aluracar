@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Alert } from 'ionic-angular';
 import { Carro } from '../../models/carro';
 import { AgendamentosServiceProvider } from '../../providers/agendamentos-service/agendamentos-service';
 
@@ -17,17 +17,17 @@ export class CadastroPage {
   public email: string = '';
   public data: string = new Date().toISOString();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _agendamentosService: AgendamentosServiceProvider) {
+  private _alerta: Alert;
+
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private _agendamentosService: AgendamentosServiceProvider, 
+    private _alertCtrl: AlertController) {
     this.carro = this.navParams.get('carroSelecionado');
     this.precoTotal = this.navParams.get('precoTotal');
   }
 
   agenda(){
-    console.log(this.nome);
-    console.log(this.endereco);
-    console.log(this.email);
-    console.log(this.data);
-
     let agendamento = {
       nomeCliente: this.nome,
       enderecoCliente: this.endereco,
@@ -36,9 +36,22 @@ export class CadastroPage {
       precoTotal: this.precoTotal,
     }
 
+    this._alerta = this._alertCtrl.create({
+      title: 'Aviso',
+      buttons: [
+        {text: 'ok'}
+      ]
+    })
+
     this._agendamentosService.agenda(agendamento).subscribe(
-      () => alert('Agendou!'),
-      () => alert('Deu problema!')
+      () => {
+        this._alerta.setSubTitle('Agendamento realizado!');
+        this._alerta.present();
+      },
+      () => {
+        this._alerta.setSubTitle('Falha no agendamento!');
+        this._alerta.present();
+      }
     );
   }
 }
