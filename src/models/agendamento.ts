@@ -6,5 +6,6 @@ export interface Agendamento{
     precoTotal: number, 
     data: string,
     confirmado: boolean,
-    enviado: boolean   
+    enviado: boolean,
+    visualizado: boolean
 }

@@ -8,6 +8,8 @@ import { LoginPage } from '../pages/login/login';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { UsuariosServiceProvider } from '../providers/usuarios-service/usuarios-service';
 import { OneSignal, OSNotification } from '@ionic-native/onesignal';
+import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
+import { Agendamento } from '../models/agendamento';
 @Component({
   selector: 'myapp',
   templateUrl: 'app.html'
@@ -21,7 +23,7 @@ export class MyApp {
     {titulo: 'Perfil', pagina: PerfilPage.name, icone: 'person'}
   ];
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private _usuariosService: UsuariosServiceProvider, private _onesignal: OneSignal) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private _usuariosService: UsuariosServiceProvider, private _onesignal: OneSignal, private _agendamentoDao: AgendamentoDaoProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -29,15 +31,18 @@ export class MyApp {
       splashScreen.hide();
 
       //configurar onesignal
+      /*
+      //configuracoes IOS, nao utilizado por enquanto!
       let iosConfigs = {
         kOSSettingsKeyAutoPrompt: true,
         kOSSettingsKeyInAppLaunchURL: false
       }
+      */
 
       //configuração inicial
       this._onesignal
-        .startInit('', '')
-        .iosSettings(iosConfigs);
+        .startInit('[appId]','[googleProjectNumber]')
+        //.iosSettings(iosConfigs);
 
       //exibir notificação mesmo com app aberto
       this._onesignal.inFocusDisplaying(
@@ -48,7 +53,16 @@ export class MyApp {
       this._onesignal.handleNotificationReceived()
         .subscribe(
           (notificacao: OSNotification) => {
+            let dadosAdicionais = notificacao.payload.additionalData;
+            let agendamentoId = dadosAdicionais['agendamento-id'];
 
+            this._agendamentoDao.recupera(agendamentoId)
+            .subscribe(
+              (agendamento: Agendamento) => {
+              agendamento.confirmado = true;
+
+              this._agendamentoDao.salva(agendamento);
+            })
           }
         );
 

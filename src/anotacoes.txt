@@ -56,3 +56,5 @@ em identity, bundle identifier: colocar um identificador unico para a app (ex: b
 
 para teste em device:
 selecionar device no menu superior e clicar no botao de play
+
+rodar node em ip: npm start [ip]

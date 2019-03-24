@@ -28,6 +28,22 @@ export class ListaAgendamentosPage {
     })
   }
 
+  //executado quando usuario acessa pagina
+  ionViewDidEnter(){
+    //marca agendamentos como visualizado apos 5000ms
+    setTimeout(() => this.atualizaAgendamentos(),5000);
+  }
+
+  atualizaAgendamentos(){
+    this.agendamentos
+      .filter((agendamento: Agendamento) => agendamento.confirmado)
+      .forEach((agendamento: Agendamento) => {
+        agendamento.visualizado = true;
+
+        this._agendamentoDao.salva(agendamento);
+      });
+  }
+
   reenvia(agendamento: Agendamento){
     this._alerta = this._alertCtrl.create({
       title: 'Aviso',

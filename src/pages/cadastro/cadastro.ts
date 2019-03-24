@@ -65,7 +65,8 @@ export class CadastroPage {
       precoTotal: this.precoTotal,
       data: this.data,
       confirmado: false,
-      enviado: false
+      enviado: false,
+      visualizado: false
     }
 
     this._alerta = this._alertCtrl.create({
