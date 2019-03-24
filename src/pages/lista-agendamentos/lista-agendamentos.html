@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Lista Agendamentos</ion-title>
+    <ion-title>Agendamentos</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,7 +9,7 @@
 
 <ion-content padding>
 <ion-list>
-  <ion-item *ngFor="let agendamento of agendamentos">
+  <ion-item [class.falha]="!agendamento.enviado" *ngFor="let agendamento of agendamentos">
     {{agendamento.nomeCliente}} - {{agendamento.modeloCarro}}
   </ion-item>
 </ion-list>
