@@ -1,14 +1,14 @@
 <ion-split-pane>
-    <ion-menu [content]="conteudo">
+    <ion-menu [content]="conteudo" *ngIf="usuarioLogado">
         <ion-content>
             <ion-item id="cabecalho-menu" class="cabecalho-menu">
                 <div>
                     <ion-avatar item-start>
-                        <img src="assets/img/ramon.png">
+                        <img src="assets/img/avatar-padrao.jpg">
                     </ion-avatar>
                 </div>
-                <h2>Ramón Souza</h2>
-                <p>contato@ramonsouza.com</p>
+                <h2>{{usuarioLogado.nome}}</h2>
+                <p>{{usuarioLogado.email}}</p>
             </ion-item>
             <ion-list> 
                 <button ion-item menuClose *ngFor="let pagina of paginas"
