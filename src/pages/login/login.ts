@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { UsuariosServiceProvider } from '../../providers/usuarios-service/usuarios-service';
+import { Usuario } from '../../models/usuario';
 
 @IonicPage()
 @Component({
@@ -15,16 +10,36 @@ import { HomePage } from '../home/home';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  email: String;
-  senha: String;
+  email: string = 'joao@alura.com.br';
+  senha: string = 'alura123';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private _usuariosService: UsuariosServiceProvider,
+    private _alertCtrl: AlertController,
+    ) {
   }
 
   efetuaLogin(){
     console.log(this.email);
     console.log(this.senha);
 
-    this.navCtrl.setRoot(HomePage);
+    this._usuariosService.efetuaLogin(this.email,this.senha)
+    .subscribe(
+      (usuario: Usuario) => {
+        console.log(usuario);
+        this.navCtrl.setRoot(HomePage);
+      },
+      () => {
+        this._alertCtrl.create({
+          title: 'Falha no login',
+          subTitle: 'E-mail ou senha incorretos! Verifique!',
+          buttons: [{
+            text: 'Ok'
+          }]
+        }).present();
+      }
+    )
+
   }
 }

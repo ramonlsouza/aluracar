@@ -11,7 +11,7 @@ export class UsuariosServiceProvider {
   }
 
   efetuaLogin(email, senha){
-    this._http.post<Usuario>('http://localhost:8080/api/login', {email, senha})
+    return this._http.post<Usuario>('http://localhost:8080/api/login', {email, senha})
     .do((usuario: Usuario) => this._usuarioLogado = usuario);
   }
 
