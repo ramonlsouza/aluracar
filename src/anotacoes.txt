@@ -24,4 +24,8 @@ sudo ionic cordova plugin add [nome]
 sudo ionic cordova plugin add cordova-plugin-vibration@2.1.6
 
 depois: 
-npm install --save @ionic-native/vibration
+npm install --save @ionic-native/vibration@4.5.2
+
+plugin datepicker:
+sudo ionic cordova plugin add cordova-plugin-datepicker@0.9
+npm install --save @ionic-native/date-picker@4.5.2

@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 import { Agendamento } from '../../models/agendamento';
 import { AgendamentoDaoProvider } from '../../providers/agendamento-dao/agendamento-dao';
 import { Vibration } from '@ionic-native/vibration';
+import { DatePicker } from '@ionic-native/date-picker';
 
 @IonicPage()
 @Component({
@@ -28,10 +29,19 @@ export class CadastroPage {
     private _agendamentosService: AgendamentosServiceProvider, 
     private _alertCtrl: AlertController,
     private _agendamentoDao: AgendamentoDaoProvider,
-    private _vibration: Vibration
+    private _vibration: Vibration,
+    private _datepicker: DatePicker,
     ) {
     this.carro = this.navParams.get('carroSelecionado');
     this.precoTotal = this.navParams.get('precoTotal');
+  }
+
+  selecionaData(){
+    this._datepicker.show({
+      date: new Date(),
+      mode: 'date'
+    })
+    .then(data => this.data = data.toISOString());
   }
 
   agenda(){
