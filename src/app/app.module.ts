@@ -20,11 +20,13 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/of';
 import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento
   entryComponents: [
     MyApp,
     HomePage,
+    LoginPage
   ],
   providers: [
     StatusBar,
