@@ -21,6 +21,7 @@ import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/of';
 import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
 import { LoginPage } from '../pages/login/login';
+import { UsuariosServiceProvider } from '../providers/usuarios-service/usuarios-service';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { LoginPage } from '../pages/login/login';
     CarrosServiceProvider,
     AgendamentosServiceProvider,
     AgendamentoDaoProvider,
+    UsuariosServiceProvider,
   ]
 })
 export class AppModule {}
