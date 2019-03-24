@@ -18,3 +18,10 @@ para poder navegar para a pagina utilizando o nome
   exports: [
     CadastroPage
   ]
+
+adicionar plugin cordova:
+sudo ionic cordova plugin add [nome]
+sudo ionic cordova plugin add cordova-plugin-vibration@2.1.6
+
+depois: 
+npm install --save @ionic-native/vibration
