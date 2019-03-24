@@ -30,6 +30,11 @@ plugin datepicker:
 sudo ionic cordova plugin add cordova-plugin-datepicker@0.9
 npm install --save @ionic-native/date-picker@4.5.2
 
+plugin camera:
+sudo ionic cordova plugin add cordova-plugin-camera@2.4.1
+npm install --save @ionic-native/camera@4.5.2
+
+
 realizar build android:
 ionic cordova platform add android
 sudo ionic cordova build android
