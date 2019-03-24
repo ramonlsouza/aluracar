@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AgendamentoDaoProvider } from '../../providers/agendamento-dao/agendamento-dao';
+import { Agendamento } from '../../models/agendamento';
 
 @IonicPage()
 @Component({
@@ -7,12 +9,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'lista-agendamentos.html',
 })
 export class ListaAgendamentosPage {
+  agendamentos: Agendamento[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private _agendamentoDao: AgendamentoDaoProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ListaAgendamentosPage');
+    this._agendamentoDao.listaTodos()
+    .subscribe((agendamentos: Agendamento[]) => {
+      this.agendamentos = agendamentos;
+    })
   }
 
 }

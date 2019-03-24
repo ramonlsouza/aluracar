@@ -1,18 +1,16 @@
-<!--
-  Generated template for the ListaAgendamentosPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>lista-agendamentos</ion-title>
+    <ion-title>Lista Agendamentos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+<ion-list>
+  <ion-item *ngFor="let agendamento of agendamentos">
+    {{agendamento.nomeCliente}} - {{agendamento.modeloCarro}}
+  </ion-item>
+</ion-list>
 </ion-content>
