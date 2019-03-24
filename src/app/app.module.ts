@@ -26,6 +26,7 @@ import { ApiServiceProvider } from '../providers/api-service/api-service';
 import { Vibration } from '@ionic-native/vibration';
 import { DatePicker } from '@ionic-native/date-picker';
 import { Camera } from '@ionic-native/camera';
+import { OneSignal } from '@ionic-native/onesignal';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { Camera } from '@ionic-native/camera';
     Vibration,
     DatePicker,
     Camera,
+    OneSignal
   ]
 })
 export class AppModule {}

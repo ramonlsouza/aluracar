@@ -7,6 +7,7 @@ import { ListaAgendamentosPage } from '../pages/lista-agendamentos/lista-agendam
 import { LoginPage } from '../pages/login/login';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { UsuariosServiceProvider } from '../providers/usuarios-service/usuarios-service';
+import { OneSignal, OSNotification } from '@ionic-native/onesignal';
 @Component({
   selector: 'myapp',
   templateUrl: 'app.html'
@@ -20,12 +21,38 @@ export class MyApp {
     {titulo: 'Perfil', pagina: PerfilPage.name, icone: 'person'}
   ];
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private _usuariosService: UsuariosServiceProvider) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private _usuariosService: UsuariosServiceProvider, private _onesignal: OneSignal) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
+      //configurar onesignal
+      let iosConfigs = {
+        kOSSettingsKeyAutoPrompt: true,
+        kOSSettingsKeyInAppLaunchURL: false
+      }
+
+      //configuração inicial
+      this._onesignal
+        .startInit('', '')
+        .iosSettings(iosConfigs);
+
+      //exibir notificação mesmo com app aberto
+      this._onesignal.inFocusDisplaying(
+        this._onesignal.OSInFocusDisplayOption.Notification
+      );
+
+      //o que fazer quando receber notificação
+      this._onesignal.handleNotificationReceived()
+        .subscribe(
+          (notificacao: OSNotification) => {
+
+          }
+        );
+
+        this._onesignal.endInit();
     });
   }
 

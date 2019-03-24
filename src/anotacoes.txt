@@ -34,6 +34,10 @@ plugin camera:
 sudo ionic cordova plugin add cordova-plugin-camera@2.4.1
 npm install --save @ionic-native/camera@4.5.2
 
+plugin onesignal:
+sudo gem install cocoapods
+sudo ionic cordova plugin add onesignal-cordova-plugin@2.2.5
+npm install --save @ionic-native/onesignal@4.5.2
 
 realizar build android:
 ionic cordova platform add android
